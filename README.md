@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/branding/tiny-portfolio-hero.webp" alt="Tiny Portfolio by Meranor — a privacy-first investment and crypto portfolio companion for ChatGPT" width="100%">
+</p>
+
 # Tiny Portfolio by Meranor
 
 **A privacy-conscious investment and crypto portfolio companion for ChatGPT.**
@@ -42,6 +46,10 @@ Tiny Portfolio is planned around three user-controlled check-in methods:
 2. **Screenshot Assist** — the user uploads a selected screenshot and confirms every extracted value before it is recorded.
 3. **Hybrid Check-In** — Tiny Portfolio extracts visible values and asks only for missing accounting context.
 
+<p align="center">
+  <img src="assets/branding/tiny-portfolio-social-preview.webp" alt="Tiny Portfolio by Meranor — Track. Review. Decide calmly." width="100%">
+</p>
+
 ## Meranor Labs status
 
 Tiny Portfolio begins as an experimental Meranor Labs project. Development will be shared through public issues, milestones, pull requests, release notes, tests, and product screenshots.
@@ -68,11 +76,25 @@ The private Command Center may inform product research, but its data and impleme
 
 The first milestone will establish the product contract, privacy model, portable data format, deterministic accounting engine, classification rules, tests, and initial ChatGPT plugin structure.
 
+## Brand assets
+
+Repository-ready brand files are stored under [`assets/branding`](assets/branding):
+
+- [README hero banner](assets/branding/tiny-portfolio-hero.webp)
+- [Social preview card](assets/branding/tiny-portfolio-social-preview.webp)
+- [Horizontal Tiny Portfolio wordmark](assets/branding/tiny-portfolio-wordmark.webp)
+
 ## Disclaimer
 
 Tiny Portfolio is intended as a tracking, journaling, and decision-support workflow. It does not execute trades and is not a substitute for professional financial, legal, or tax advice.
 
 ---
 
-**Tiny Portfolio by Meranor**  
-A Meranor Labs project by Meranor Systems.
+<p align="center">
+  <img src="assets/branding/tiny-portfolio-wordmark.webp" alt="Tiny Portfolio wordmark" width="460">
+</p>
+
+<p align="center">
+  <strong>Tiny Portfolio by Meranor</strong><br>
+  A Meranor Labs project by Meranor Systems.
+</p>
