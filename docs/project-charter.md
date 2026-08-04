@@ -54,21 +54,18 @@ Tiny Portfolio will be developed openly through:
 - screenshots and demonstrations;
 - clearly documented limitations and unresolved decisions.
 
-## Product boundary
+## Public data boundary
 
-Tiny Portfolio is separate from the private Tiny Portfolio Command Center.
+Development, testing, documentation, and demonstrations must use fictional or clearly synthetic portfolio data unless a contributor has intentionally created and sanitized a public example.
 
 The public repository must never contain:
 
-- Josh's personal holdings;
-- private Coinbase screenshots;
-- personal portfolio journals;
-- account identifiers;
-- private contribution history;
-- Command Center source code;
-- Command Center databases or backups.
-
-The private Command Center may serve as an internal reference and testing laboratory, but it remains a separate project and data environment.
+- personal account identifiers;
+- passwords, authentication codes, seed phrases, or private keys;
+- exchange API secrets;
+- private or unsanitized portfolio screenshots;
+- personal financial journals or transaction history;
+- user data that has not been deliberately approved for public use.
 
 ## Product path
 
