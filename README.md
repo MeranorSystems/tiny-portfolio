@@ -56,19 +56,9 @@ Tiny Portfolio begins as an experimental Meranor Labs project. Development will 
 
 If real-world adoption justifies it, Tiny Portfolio may later be promoted into a full Meranor Systems product.
 
-## Important project boundary
+## Public data policy
 
-This public repository is separate from the private **Tiny Portfolio Command Center**.
-
-This repository must never contain:
-
-- personal holdings or account identifiers;
-- private portfolio screenshots;
-- private journals or contribution history;
-- Command Center databases or backups;
-- source code belonging exclusively to the private Command Center.
-
-The private Command Center may inform product research, but its data and implementation remain separate.
+This repository uses fictional or clearly synthetic examples for development, testing, and documentation. Contributors must not publish real account identifiers, credentials, private portfolio screenshots, personal financial records, or unsanitized user data.
 
 ## Current stage
 
