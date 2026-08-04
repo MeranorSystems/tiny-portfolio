@@ -7,7 +7,7 @@ Tiny Portfolio is an open Meranor Labs project. Early contributions should focus
 - Read `docs/project-charter.md`.
 - Do not submit real account data, private portfolio screenshots, credentials, identifiers, or personal financial records.
 - Use fictional or clearly synthetic fixtures in tests and examples.
-- Keep Tiny Portfolio separate from the private Tiny Portfolio Command Center.
+- Keep contributions limited to public Tiny Portfolio requirements and repository-owned source material.
 - Open or reference an issue before beginning substantial feature work.
 
 ## Development workflow
