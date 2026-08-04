@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build and temporary output
+build/
+dist/
+*.tmp
+*.log
+
+# Private portfolio data and screenshots
+tiny-portfolio.json
+*.portfolio.json
+private-data/
+user-data/
+screenshots/private/
