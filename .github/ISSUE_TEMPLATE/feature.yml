@@ -1,0 +1,37 @@
+name: Feature proposal
+description: Propose a focused Tiny Portfolio feature or product change
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping shape Tiny Portfolio. Do not include personal financial records, account identifiers, credentials, or unsanitized screenshots.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the smallest useful behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy and safety impact
+      description: Explain what data is involved and how confirmation, storage, or permissions should work.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable conditions that would make this complete.
+    validations:
+      required: true
