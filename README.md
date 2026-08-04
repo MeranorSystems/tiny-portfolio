@@ -1,14 +1,22 @@
 # Tiny Portfolio by Meranor
 
-**A privacy-conscious, rules-based portfolio companion for people starting small.**
+**A privacy-conscious investment and crypto portfolio companion for ChatGPT.**
+
+Tiny Portfolio is an upcoming ChatGPT plugin designed to help people start small, track what they own, understand how their portfolio is performing, and make calmer decisions using rules they define for themselves.
+
+Rather than connecting directly to an exchange or brokerage account, users can update Tiny Portfolio through guided questions, selected screenshots, or a combination of both. The plugin separates money contributed from actual portfolio gains or losses, tracks milestones and contribution limits, and explains whether the user's current rules point to **HOLD**, **WAIT**, or **REVIEW**.
+
+Tiny Portfolio does not execute trades, store private keys, or promise what the market will do next. It is a conversational tracking, journaling, and decision-support companion—not a broker or trading bot.
 
 Tiny Portfolio is an official **Meranor Labs** project owned by **Meranor Systems** and developed openly.
 
-The project is exploring a transparent ChatGPT plugin that helps users:
+## What Tiny Portfolio helps users do
 
-- create clear portfolio rules;
+- create clear portfolio and contribution rules;
+- track cryptocurrency and other manually recorded investments;
 - record guided or screenshot-assisted check-ins;
 - distinguish outside contributions from portfolio performance;
+- understand gains, losses, fees, rewards, and withdrawals;
 - track milestones and contribution limits;
 - classify the current state as **HOLD**, **WAIT**, or **REVIEW**;
 - maintain user-controlled, portable records;
