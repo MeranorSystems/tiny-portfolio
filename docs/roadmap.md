@@ -1,8 +1,10 @@
 # Tiny Portfolio Manual Build Roadmap
 
-**Baseline:** 2026-08-09  
-**Build mode:** Manual, phase-gated development  
-**Development branch:** `feat/manual-plugin-foundation`
+**Baseline:** 2026-08-09
+**Build mode:** Manual, phase-gated development
+**Current phase:** Phase 2B — Accounting Engine
+**Development branch:** `feat/deterministic-accounting`
+**Accepted baseline:** Phase 1 promoted to `main` at `a522dd5`
 
 Tiny Portfolio is built in small, reviewable phases. A phase advances only after its acceptance criteria are checked and the current work is reviewed.
 
@@ -21,7 +23,7 @@ Create a clean public repository foundation for the manual build.
 - record the OpenAI packaging baseline verified on 2026-08-09;
 - verify the branch contains no personal financial data.
 
-**Exit:** the repository renders correctly, documents the current architecture, contains no production accounting implementation, and is ready for the data contract.
+**Exit:** accepted and promoted to `main`; the repository renders correctly, documents the current architecture, contains no production accounting implementation, and is ready for the data contract.
 
 ## Phase 1 — Portable Data Contract
 
@@ -36,11 +38,35 @@ Define `tiny-portfolio.json` before writing accounting logic.
 - invalid validation fixtures;
 - structural validation.
 
-**Exit:** valid examples pass, invalid examples fail clearly, and no real portfolio data is used.
+**Exit:** accepted and promoted to `main` at `a522dd5`; valid examples pass, invalid examples fail clearly, and no real portfolio data is used.
 
 ## Phase 2 — Deterministic Accounting Engine
 
 Implement contribution-adjusted dollar accounting with `Decimal`-safe arithmetic.
+
+### Phase 2A — Accounting Contract
+
+Define and accept the deterministic accounting behavior before implementation:
+
+- effective-ledger and correction behavior;
+- confirmed-snapshot selection;
+- accounting as-of boundary;
+- contributions and withdrawals;
+- trade neutrality;
+- fee/reward explanatory totals without double counting;
+- contribution-adjusted dollar P/L;
+- post-snapshot activity signaling;
+- missing/ambiguous value handling;
+- Decimal requirements and deterministic derived serialization;
+- required synthetic accounting scenarios.
+
+**Exit:** accepted. `docs/accounting-contract.md` is the implementation contract for Phase 2B.
+
+### Phase 2B — Accounting Engine
+
+**Status:** Active
+
+Implement `portfolio_engine.py` against the accepted Phase 2A contract.
 
 Required behavior includes:
 
@@ -50,10 +76,16 @@ Required behavior includes:
 - trade/conversion neutrality for outside capital;
 - known fees/rewards as explanatory activity;
 - contribution-adjusted dollar P/L;
+- correction-aware effective ledger;
+- post-snapshot freshness signaling;
 - missing-data handling;
 - deterministic output.
 
-Required tests include contribution-not-profit, withdrawal-not-loss, trade neutrality, no fee/reward double counting, Decimal safety, and missing-data behavior.
+### Phase 2C — Accounting Tests & Acceptance
+
+Required tests include contribution-not-profit, withdrawal-not-loss, trade neutrality, no fee/reward double counting, correction behavior, Decimal safety, as-of snapshot behavior, ambiguous snapshot handling, and missing-data behavior.
+
+**Exit:** the accounting engine passes its Phase 2 acceptance review and is promoted to `main`.
 
 ## Phase 3 — Rules + HOLD / WAIT / REVIEW
 
