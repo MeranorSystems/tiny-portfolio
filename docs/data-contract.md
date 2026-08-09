@@ -672,8 +672,7 @@ Example:
 ```json
 {
   "record_revision": 1,
-  "updated_at": "2026-08-09T20:01:00Z",
-  "last_confirmed_snapshot_id": "snapshot_001"
+  "updated_at": "2026-08-09T20:01:00Z"
 }
 ```
 
@@ -686,12 +685,6 @@ It is intended to help identify older copies of the same portable record.
 ### `updated_at`
 
 Timestamp of the most recent authoritative record update.
-
-### `last_confirmed_snapshot_id`
-
-Optional ID of the most recently confirmed snapshot.
-
-It may be omitted when the record does not yet contain a snapshot.
 
 ## Cross-record semantic invariants
 
@@ -743,10 +736,6 @@ This keeps correction history simple and append-oriented.
 
 A corrected replacement fact is represented by a separate new normal ledger event.
 
-### Snapshot metadata reference
-
-If `metadata.last_confirmed_snapshot_id` is present, it must reference a snapshot that exists in the same portable record.
-
 ### Timestamp ordering
 
 Where both timestamps are present:
@@ -787,9 +776,14 @@ Phase 1 is complete only when:
 - `tiny-portfolio.schema.json` implements this contract;
 - a fictional full example portfolio validates;
 - a minimal valid portfolio validates;
+- every supported machine-rule type has positive validation coverage;
+- every supported ledger-event type has positive validation coverage;
+- a valid append-oriented correction sequence passes validation;
 - invalid money values fail;
 - missing required schema information fails;
 - an unconfirmed snapshot representation fails;
-- schema validation tests pass;
-- no real portfolio data is present;
-- explicit correction events are structurally supported and broken correction references are rejected.
+- unsupported properties fail strict schema validation;
+- broken correction references and invalid correction relationships fail semantic validation;
+- documented timestamp-ordering violations fail semantic validation;
+- schema and structural-semantic validation tests pass;
+- no real portfolio data is present.

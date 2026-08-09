@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "portfolio": {
+    "portfolio_id": "portfolio_minimal_001",
+    "name": "Minimal Demo Portfolio",
+    "base_currency": "USD",
+    "created_at": "2026-08-09T18:00:00Z"
+  },
+  "rules": {
+    "machine_rules": [],
+    "guidance_notes": []
+  },
+  "milestones": [
+    {
+      "milestone_id": "milestone_time_001",
+      "label": "Synthetic invalid timestamp milestone",
+      "target_value": "75.00",
+      "created_at": "2026-08-10T12:00:00Z",
+      "reached_at": "2026-08-09T12:00:00Z"
+    }
+  ],
+  "ledger": [],
+  "snapshots": [],
+  "metadata": {
+    "record_revision": 1,
+    "updated_at": "2026-08-09T18:00:00Z"
+  }
+}

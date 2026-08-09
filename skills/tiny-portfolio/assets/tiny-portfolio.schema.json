@@ -873,9 +873,6 @@
         },
         "updated_at": {
           "$ref": "#/$defs/timestamp"
-        },
-        "last_confirmed_snapshot_id": {
-          "$ref": "#/$defs/id"
         }
       }
     }

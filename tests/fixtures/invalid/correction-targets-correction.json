@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "portfolio": {
+    "portfolio_id": "portfolio_minimal_001",
+    "name": "Minimal Demo Portfolio",
+    "base_currency": "USD",
+    "created_at": "2026-08-09T18:00:00Z"
+  },
+  "rules": {
+    "machine_rules": [],
+    "guidance_notes": []
+  },
+  "milestones": [],
+  "ledger": [
+    {
+      "event_id": "event_tc_001",
+      "event_type": "note",
+      "occurred_at": "2026-08-09T18:01:00Z",
+      "recorded_at": "2026-08-09T18:02:00Z",
+      "source": "guided",
+      "data": {
+        "text": "Synthetic note."
+      }
+    },
+    {
+      "event_id": "event_tc_002",
+      "event_type": "correction",
+      "occurred_at": "2026-08-09T18:03:00Z",
+      "recorded_at": "2026-08-09T18:04:00Z",
+      "source": "guided",
+      "data": {
+        "target_event_id": "event_tc_001",
+        "action": "void",
+        "reason": "Synthetic correction test."
+      }
+    },
+    {
+      "event_id": "event_tc_003",
+      "event_type": "correction",
+      "occurred_at": "2026-08-09T18:05:00Z",
+      "recorded_at": "2026-08-09T18:06:00Z",
+      "source": "guided",
+      "data": {
+        "target_event_id": "event_tc_002",
+        "action": "void",
+        "reason": "Synthetic correction test."
+      }
+    }
+  ],
+  "snapshots": [],
+  "metadata": {
+    "record_revision": 1,
+    "updated_at": "2026-08-09T18:00:00Z"
+  }
+}

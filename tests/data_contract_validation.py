@@ -141,11 +141,8 @@ def validate_semantics(record: dict[str, Any]) -> list[str]:
                 )
 
     # Snapshot timestamp ordering.
-    snapshot_ids: set[str] = set()
     for snapshot in snapshots:
         snapshot_id = snapshot.get("snapshot_id")
-        if isinstance(snapshot_id, str):
-            snapshot_ids.add(snapshot_id)
 
         captured_at = snapshot.get("captured_at")
         recorded_at = snapshot.get("recorded_at")
@@ -172,11 +169,5 @@ def validate_semantics(record: dict[str, Any]) -> list[str]:
                     f"snapshot {snapshot_id} confirmed_at is later than recorded_at"
                 )
 
-    last_snapshot_id = metadata.get("last_confirmed_snapshot_id")
-    if isinstance(last_snapshot_id, str) and last_snapshot_id not in snapshot_ids:
-        errors.append(
-            "metadata.last_confirmed_snapshot_id references missing snapshot: "
-            f"{last_snapshot_id}"
-        )
 
     return errors

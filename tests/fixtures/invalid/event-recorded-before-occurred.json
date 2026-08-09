@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "portfolio": {
+    "portfolio_id": "portfolio_minimal_001",
+    "name": "Minimal Demo Portfolio",
+    "base_currency": "USD",
+    "created_at": "2026-08-09T18:00:00Z"
+  },
+  "rules": {
+    "machine_rules": [],
+    "guidance_notes": []
+  },
+  "milestones": [],
+  "ledger": [
+    {
+      "event_id": "event_time_001",
+      "event_type": "note",
+      "occurred_at": "2026-08-09T18:10:00Z",
+      "recorded_at": "2026-08-09T18:09:00Z",
+      "source": "guided",
+      "data": {
+        "text": "Synthetic note."
+      }
+    }
+  ],
+  "snapshots": [],
+  "metadata": {
+    "record_revision": 1,
+    "updated_at": "2026-08-09T18:00:00Z"
+  }
+}
