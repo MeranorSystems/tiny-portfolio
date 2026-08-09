@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "portfolio": {
+    "portfolio_id": "portfolio_demo_001",
+    "name": "Demo Tiny Portfolio",
+    "base_currency": "USD",
+    "created_at": "2026-08-01T14:00:00Z"
+  },
+  "rules": {
+    "machine_rules": [
+      {
+        "rule_id": "rule_demo_001",
+        "type": "minimum_days_between_contributions",
+        "enabled": true,
+        "created_at": "2026-08-01T14:00:00Z",
+        "config": {
+          "days": 14
+        }
+      },
+      {
+        "rule_id": "rule_demo_002",
+        "type": "portfolio_value_review_threshold",
+        "enabled": true,
+        "created_at": "2026-08-01T14:00:00Z",
+        "config": {
+          "threshold_value": "75.00",
+          "direction": "at_or_above"
+        }
+      }
+    ],
+    "guidance_notes": [
+      {
+        "note_id": "guidance_demo_001",
+        "text": "Prefer slow, scheduled contributions rather than reacting to daily price movement.",
+        "created_at": "2026-08-01T14:00:00Z"
+      }
+    ]
+  },
+  "milestones": [
+    {
+      "milestone_id": "milestone_demo_001",
+      "label": "First checkpoint",
+      "target_value": "75.00",
+      "created_at": "2026-08-01T14:00:00Z"
+    }
+  ],
+  "ledger": [
+    {
+      "event_id": "event_demo_001",
+      "event_type": "contribution",
+      "occurred_at": "2026-08-01T14:00:00Z",
+      "recorded_at": "2026-08-01T14:01:00Z",
+      "source": "guided",
+      "data": {
+        "amount": "50.00",
+        "currency": "USD"
+      }
+    },
+    {
+      "event_id": "event_demo_002",
+      "event_type": "trade",
+      "occurred_at": "2026-08-03T16:00:00Z",
+      "recorded_at": "2026-08-03T16:02:00Z",
+      "source": "guided",
+      "data": {
+        "from_asset": "USD",
+        "to_asset": "BTC",
+        "from_quantity": "10.00",
+        "to_quantity": "0.000083"
+      }
+    },
+    {
+      "event_id": "event_demo_003",
+      "event_type": "reward",
+      "occurred_at": "2026-08-07T12:00:00Z",
+      "recorded_at": "2026-08-07T12:05:00Z",
+      "source": "guided",
+      "data": {
+        "reward_type": "staking",
+        "amount": "0.08",
+        "currency": "USD",
+        "asset_symbol": "ETH"
+      }
+    },
+    {
+      "event_id": "event_demo_004",
+      "event_type": "fee",
+      "occurred_at": "2026-08-07T12:00:00Z",
+      "recorded_at": "2026-08-07T12:05:00Z",
+      "source": "guided",
+      "data": {
+        "amount": "0.03",
+        "currency": "USD",
+        "asset_symbol": "ETH"
+      }
+    }
+  ],
+  "snapshots": [
+    {
+      "snapshot_id": "snapshot_demo_001",
+      "captured_at": "2026-08-09T18:30:00Z",
+      "recorded_at": "2026-08-09T18:31:00Z",
+      "total_value": "51.25",
+      "holdings": [
+        {
+          "symbol": "ETH",
+          "name": "Ethereum",
+          "asset_type": "crypto",
+          "value": "40.00"
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin",
+          "asset_type": "crypto",
+          "quantity": "0.000083",
+          "value": "10.75"
+        },
+        {
+          "symbol": "USD",
+          "name": "Cash",
+          "asset_type": "cash",
+          "value": "0.50"
+        }
+      ],
+      "source": "hybrid",
+      "confirmation": {
+        "confirmed_at": "2026-08-09T18:31:00Z"
+      }
+    }
+  ],
+  "metadata": {
+    "record_revision": 4,
+    "updated_at": "2026-08-09T18:31:00Z",
+    "last_confirmed_snapshot_id": "snapshot_demo_001"
+  }
+}

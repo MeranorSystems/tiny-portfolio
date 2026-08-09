@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "portfolio": {
+    "portfolio_id": "portfolio_semantic_001",
+    "name": "Synthetic Semantic Test Portfolio",
+    "base_currency": "USD",
+    "created_at": "2026-08-09T18:00:00Z"
+  },
+  "rules": {
+    "machine_rules": [
+      {
+        "rule_id": "rule_semantic_001",
+        "type": "milestone_review",
+        "enabled": true,
+        "created_at": "2026-08-09T18:00:00Z",
+        "config": {
+          "milestone_id": "milestone_missing_999"
+        }
+      }
+    ],
+    "guidance_notes": []
+  },
+  "milestones": [],
+  "ledger": [],
+  "snapshots": [],
+  "metadata": {
+    "record_revision": 1,
+    "updated_at": "2026-08-09T18:00:00Z"
+  }
+}

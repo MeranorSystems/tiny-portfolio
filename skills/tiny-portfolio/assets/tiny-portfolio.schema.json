@@ -1,0 +1,883 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meranorsystems.github.io/tiny-portfolio/schema/tiny-portfolio.schema.json",
+  "title": "Tiny Portfolio Portable Data Contract",
+  "description": "Schema version 1.0 for the portable user-controlled Tiny Portfolio record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "portfolio",
+    "rules",
+    "milestones",
+    "ledger",
+    "snapshots",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "portfolio": {
+      "$ref": "#/$defs/portfolio"
+    },
+    "rules": {
+      "$ref": "#/$defs/rules"
+    },
+    "milestones": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/milestone"
+      }
+    },
+    "ledger": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ledger_event"
+      }
+    },
+    "snapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/snapshot"
+      }
+    },
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "decimal_string": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "guided",
+        "screenshot",
+        "hybrid",
+        "manual_import"
+      ]
+    },
+    "portfolio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "portfolio_id",
+        "name",
+        "base_currency",
+        "created_at"
+      ],
+      "properties": {
+        "portfolio_id": {
+          "$ref": "#/$defs/id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "base_currency": {
+          "$ref": "#/$defs/currency"
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "machine_rules",
+        "guidance_notes"
+      ],
+      "properties": {
+        "machine_rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/machine_rule"
+          }
+        },
+        "guidance_notes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/guidance_note"
+          }
+        }
+      }
+    },
+    "machine_rule": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/rule_max_contribution_per_period"
+        },
+        {
+          "$ref": "#/$defs/rule_minimum_days_between_contributions"
+        },
+        {
+          "$ref": "#/$defs/rule_portfolio_value_review_threshold"
+        },
+        {
+          "$ref": "#/$defs/rule_milestone_review"
+        },
+        {
+          "$ref": "#/$defs/rule_scheduled_review_date"
+        }
+      ]
+    },
+    "rule_max_contribution_per_period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "type",
+        "enabled",
+        "created_at",
+        "config"
+      ],
+      "properties": {
+        "rule_id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "const": "max_contribution_per_period"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "period"
+          ],
+          "properties": {
+            "amount": {
+              "$ref": "#/$defs/decimal_string"
+            },
+            "period": {
+              "type": "string",
+              "enum": [
+                "day",
+                "week",
+                "month",
+                "quarter",
+                "year"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "rule_minimum_days_between_contributions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "type",
+        "enabled",
+        "created_at",
+        "config"
+      ],
+      "properties": {
+        "rule_id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "const": "minimum_days_between_contributions"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "days"
+          ],
+          "properties": {
+            "days": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "rule_portfolio_value_review_threshold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "type",
+        "enabled",
+        "created_at",
+        "config"
+      ],
+      "properties": {
+        "rule_id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "const": "portfolio_value_review_threshold"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "threshold_value",
+            "direction"
+          ],
+          "properties": {
+            "threshold_value": {
+              "$ref": "#/$defs/decimal_string"
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "at_or_above",
+                "at_or_below"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "rule_milestone_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "type",
+        "enabled",
+        "created_at",
+        "config"
+      ],
+      "properties": {
+        "rule_id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "const": "milestone_review"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "milestone_id"
+          ],
+          "properties": {
+            "milestone_id": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        }
+      }
+    },
+    "rule_scheduled_review_date": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "type",
+        "enabled",
+        "created_at",
+        "config"
+      ],
+      "properties": {
+        "rule_id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "const": "scheduled_review_date"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "review_date"
+          ],
+          "properties": {
+            "review_date": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      }
+    },
+    "guidance_note": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "note_id",
+        "text",
+        "created_at"
+      ],
+      "properties": {
+        "note_id": {
+          "$ref": "#/$defs/id"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        }
+      }
+    },
+    "milestone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "milestone_id",
+        "label",
+        "target_value",
+        "created_at"
+      ],
+      "properties": {
+        "milestone_id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_value": {
+          "$ref": "#/$defs/decimal_string"
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "reached_at": {
+          "$ref": "#/$defs/timestamp"
+        }
+      }
+    },
+    "ledger_event": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/contribution_event"
+        },
+        {
+          "$ref": "#/$defs/withdrawal_event"
+        },
+        {
+          "$ref": "#/$defs/trade_event"
+        },
+        {
+          "$ref": "#/$defs/fee_event"
+        },
+        {
+          "$ref": "#/$defs/reward_event"
+        },
+        {
+          "$ref": "#/$defs/note_event"
+        },
+        {
+          "$ref": "#/$defs/correction_event"
+        }
+      ]
+    },
+    "contribution_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_type",
+        "occurred_at",
+        "recorded_at",
+        "source",
+        "data"
+      ],
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/id"
+        },
+        "event_type": {
+          "const": "contribution"
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "$ref": "#/$defs/decimal_string"
+            },
+            "currency": {
+              "$ref": "#/$defs/currency"
+            }
+          }
+        }
+      }
+    },
+    "withdrawal_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_type",
+        "occurred_at",
+        "recorded_at",
+        "source",
+        "data"
+      ],
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/id"
+        },
+        "event_type": {
+          "const": "withdrawal"
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "$ref": "#/$defs/decimal_string"
+            },
+            "currency": {
+              "$ref": "#/$defs/currency"
+            }
+          }
+        }
+      }
+    },
+    "trade_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_type",
+        "occurred_at",
+        "recorded_at",
+        "source",
+        "data"
+      ],
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/id"
+        },
+        "event_type": {
+          "const": "trade"
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from_asset",
+            "to_asset",
+            "from_quantity",
+            "to_quantity"
+          ],
+          "properties": {
+            "from_asset": {
+              "type": "string",
+              "minLength": 1
+            },
+            "to_asset": {
+              "type": "string",
+              "minLength": 1
+            },
+            "from_quantity": {
+              "$ref": "#/$defs/decimal_string"
+            },
+            "to_quantity": {
+              "$ref": "#/$defs/decimal_string"
+            }
+          }
+        }
+      }
+    },
+    "fee_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_type",
+        "occurred_at",
+        "recorded_at",
+        "source",
+        "data"
+      ],
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/id"
+        },
+        "event_type": {
+          "const": "fee"
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "$ref": "#/$defs/decimal_string"
+            },
+            "currency": {
+              "$ref": "#/$defs/currency"
+            },
+            "asset_symbol": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "reward_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_type",
+        "occurred_at",
+        "recorded_at",
+        "source",
+        "data"
+      ],
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/id"
+        },
+        "event_type": {
+          "const": "reward"
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reward_type",
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "reward_type": {
+              "type": "string",
+              "enum": [
+                "staking",
+                "dividend",
+                "interest",
+                "other"
+              ]
+            },
+            "amount": {
+              "$ref": "#/$defs/decimal_string"
+            },
+            "currency": {
+              "$ref": "#/$defs/currency"
+            },
+            "asset_symbol": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "note_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_type",
+        "occurred_at",
+        "recorded_at",
+        "source",
+        "data"
+      ],
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/id"
+        },
+        "event_type": {
+          "const": "note"
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "text"
+          ],
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "correction_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_type",
+        "occurred_at",
+        "recorded_at",
+        "source",
+        "data"
+      ],
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/id"
+        },
+        "event_type": {
+          "const": "correction"
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target_event_id",
+            "action",
+            "reason"
+          ],
+          "properties": {
+            "target_event_id": {
+              "$ref": "#/$defs/id"
+            },
+            "action": {
+              "const": "void"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "holding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "symbol",
+        "name",
+        "asset_type"
+      ],
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "asset_type": {
+          "type": "string",
+          "enum": [
+            "crypto",
+            "equity",
+            "fund",
+            "cash",
+            "other"
+          ]
+        },
+        "quantity": {
+          "$ref": "#/$defs/decimal_string"
+        },
+        "value": {
+          "$ref": "#/$defs/decimal_string"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "quantity"
+          ]
+        },
+        {
+          "required": [
+            "value"
+          ]
+        }
+      ]
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "captured_at",
+        "recorded_at",
+        "total_value",
+        "holdings",
+        "source",
+        "confirmation"
+      ],
+      "properties": {
+        "snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "captured_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "total_value": {
+          "$ref": "#/$defs/decimal_string"
+        },
+        "holdings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/holding"
+          }
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "confirmation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "confirmed_at"
+          ],
+          "properties": {
+            "confirmed_at": {
+              "$ref": "#/$defs/timestamp"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_revision",
+        "updated_at"
+      ],
+      "properties": {
+        "record_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "updated_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "last_confirmed_snapshot_id": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    }
+  }
+}
