@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/branding/tiny-portfolio-hero.webp" alt="Tiny Portfolio by Meranor — a privacy-first investment and crypto portfolio companion for ChatGPT" width="100%">
+  <img src="assets/branding/tiny-portfolio-hero.png" alt="Tiny Portfolio by Meranor — a privacy-first investment and crypto portfolio companion for ChatGPT" width="100%">
 </p>
 
 # Tiny Portfolio by Meranor
@@ -47,7 +47,7 @@ Tiny Portfolio is planned around three user-controlled check-in methods:
 3. **Hybrid Check-In** — Tiny Portfolio extracts visible values and asks only for missing accounting context.
 
 <p align="center">
-  <img src="assets/branding/tiny-portfolio-social-preview.webp" alt="Tiny Portfolio by Meranor — Track. Review. Decide calmly." width="100%">
+  <img src="assets/branding/tiny-portfolio-update-styles.png" alt="Tiny Portfolio update styles — Guided Check-In, Screenshot Assist, and Hybrid Check-In" width="100%">
 </p>
 
 ## Meranor Labs status
@@ -70,9 +70,9 @@ The first milestone will establish the product contract, privacy model, portable
 
 Repository-ready brand files are stored under [`assets/branding`](assets/branding):
 
-- [README hero banner](assets/branding/tiny-portfolio-hero.webp)
-- [Social preview card](assets/branding/tiny-portfolio-social-preview.webp)
-- [Horizontal Tiny Portfolio wordmark](assets/branding/tiny-portfolio-wordmark.webp)
+- [README hero banner](assets/branding/tiny-portfolio-hero.png)
+- [Update styles graphic](assets/branding/tiny-portfolio-update-styles.png)
+- [Horizontal Tiny Portfolio wordmark](assets/branding/tiny-portfolio-wordmark.png)
 
 ## Disclaimer
 
@@ -81,10 +81,11 @@ Tiny Portfolio is intended as a tracking, journaling, and decision-support workf
 ---
 
 <p align="center">
-  <img src="assets/branding/tiny-portfolio-wordmark.webp" alt="Tiny Portfolio wordmark" width="460">
+  <img src="assets/branding/tiny-portfolio-wordmark.png" alt="Tiny Portfolio wordmark" width="460">
 </p>
 
 <p align="center">
   <strong>Tiny Portfolio by Meranor</strong><br>
   A Meranor Labs project by Meranor Systems.
 </p>
+

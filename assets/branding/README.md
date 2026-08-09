@@ -28,4 +28,5 @@ Source and exploratory brand concepts are retained in the project planning works
 
 ## Format rule
 
-Core repository/plugin branding should use `.png` for compatibility. Do not add new README references to `.webp` assets.
+Core repository and plugin branding should use PNG assets for maximum compatibility.
+
