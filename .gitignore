@@ -28,7 +28,11 @@ dist/
 
 # Private portfolio data and screenshots
 tiny-portfolio.json
+*.tiny-portfolio.json
 *.portfolio.json
 private-data/
 user-data/
+local-data/
+portfolio-data/
 screenshots/private/
+screenshots/user/
