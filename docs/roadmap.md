@@ -2,9 +2,9 @@
 
 **Baseline:** 2026-08-09
 **Build mode:** Manual, phase-gated development
-**Current phase:** Phase 3C — Rules & Status Acceptance complete; awaiting promotion
-**Development branch:** `feat/rules-status-engine`
-**Accepted baseline:** Phase 2 promoted to `main` at `0c32e01`
+**Current phase:** Phase 4 — Tiny Portfolio Skill
+**Next development branch:** `feat/tiny-portfolio-skill`
+**Accepted baseline:** Phase 3 promoted to `main` at `69363c3`
 
 Tiny Portfolio is built in small, reviewable phases. A phase advances only after its acceptance criteria are checked and the current work is reviewed.
 
@@ -108,11 +108,11 @@ The final rules/status suite covers global precedence, all five machine-rule typ
 
 A final hardening review corrected ambiguous intermediate milestone-history handling: a later definite below-to-at/above history can still prove a crossing, while unresolved ambiguity without a proven crossing remains WAIT.
 
-**Status:** Accepted. 99 total repository tests pass on the accepted branch head. Phase 3 is ready for fast-forward promotion to `main`.
+**Exit:** accepted and promoted to `main` at `69363c3`; 99 total repository tests pass on the promoted baseline.
 
 ## Phase 4 — Tiny Portfolio Skill
 
-Create the single focused Tiny Portfolio skill package.
+Create the single focused Tiny Portfolio skill package that teaches ChatGPT when and how to use the validated record, deterministic accounting engine, and deterministic rules/status engine.
 
 Planned structure:
 
@@ -128,11 +128,27 @@ skills/tiny-portfolio/
 │   └── briefing.md
 ├── scripts/
 │   ├── portfolio_engine.py
+│   ├── rules_engine.py
 │   └── validate_portfolio.py
 └── assets/
     ├── tiny-portfolio.example.json
     └── tiny-portfolio.schema.json
 ```
+
+Phase 4 must keep the deterministic Python scripts authoritative for calculations and rule classification. Skill instructions may explain results, gather missing context, and guide workflows, but must not replace deterministic outputs with improvised arithmetic or market opinions.
+
+Required Phase 4 work includes:
+
+- define skill activation boundaries and supported intents;
+- write the focused `SKILL.md` orchestration instructions;
+- add accounting, data-model, classification, workflow, privacy, and briefing references;
+- wire the skill to validation, accounting, and rules/status scripts;
+- preserve screenshot confirmation, credential, privacy, and public-data boundaries;
+- preserve HOLD / WAIT / REVIEW semantics and the prohibition on BUY / SELL classifications;
+- define the standard Tiny Portfolio Briefing contract used by later check-in phases;
+- add skill-level tests or review cases proving instructions do not contradict deterministic contracts.
+
+**Exit:** the skill package is internally coherent, grounded in the accepted Phase 1–3 contracts, passes repository regression checks, and is ready for Guided Check-In implementation.
 
 ## Phase 5 — Guided Check-In
 
