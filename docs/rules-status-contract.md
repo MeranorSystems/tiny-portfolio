@@ -1,7 +1,7 @@
 # Tiny Portfolio Rules & Status Contract
 
 **Phase:** 3A — Rules & Status Contract
-**Status:** Proposed for acceptance
+**Status:** Accepted
 **Input contract:** `tiny-portfolio.json` schema version 1.0
 **Accounting baseline:** Phase 2 deterministic accounting
 
