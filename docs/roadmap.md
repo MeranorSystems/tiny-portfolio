@@ -2,7 +2,7 @@
 
 **Baseline:** 2026-08-09
 **Build mode:** Manual, phase-gated development
-**Current phase:** Phase 3B — Rules & Status Engine
+**Current phase:** Phase 3C — Rules & Status Acceptance complete; awaiting promotion
 **Development branch:** `feat/rules-status-engine`
 **Accepted baseline:** Phase 2 promoted to `main` at `0c32e01`
 
@@ -98,30 +98,17 @@ Accepted semantics define:
 
 ### Phase 3B — Rules & Status Engine
 
-**Status:** Active.
+`rules_engine.py` implements the accepted Phase 3A contract, including all five v0.1 machine-rule types, HOLD / WAIT / REVIEW classification, fixed precedence, explicit evaluation time, correction-aware history, deterministic evidence, and conservative handling of missing, stale, or ambiguous facts.
 
-Implement the deterministic rule evaluator against the accepted Phase 3A contract.
-
-Required behavior includes:
-
-- `max_contribution_per_period`;
-- `minimum_days_between_contributions`;
-- `portfolio_value_review_threshold`;
-- `milestone_review`;
-- `scheduled_review_date`;
-- HOLD / WAIT / REVIEW global classification;
-- `REVIEW > WAIT > HOLD` precedence;
-- deterministic `evaluation_at` handling;
-- missing, stale, and ambiguous data handling;
-- correction-aware history;
-- deterministic evidence and result ordering;
-- no BUY or SELL output.
+**Status:** Complete at `b67fbec`.
 
 ### Phase 3C — Rules & Status Tests & Acceptance
 
-Prove each machine-rule type, HOLD/WAIT/REVIEW classification, precedence, missing-data behavior, time boundaries, milestone transitions, disabled rules, deterministic output, and the absence of BUY/SELL classifications.
+The final rules/status suite covers global precedence, all five machine-rule types, UTC calendar boundaries, contribution cooldown boundaries, corrections, future/backfilled events, stale and ambiguous snapshot behavior, milestone crossing history, deterministic ordering, record non-mutation, JSON serialization, provenance, and the prohibition on BUY/SELL outputs.
 
-**Exit:** the rules/status engine passes Phase 3 acceptance and is promoted to `main`.
+A final hardening review corrected ambiguous intermediate milestone-history handling: a later definite below-to-at/above history can still prove a crossing, while unresolved ambiguity without a proven crossing remains WAIT.
+
+**Status:** Accepted. 99 total repository tests pass on the accepted branch head. Phase 3 is ready for fast-forward promotion to `main`.
 
 ## Phase 4 — Tiny Portfolio Skill
 
