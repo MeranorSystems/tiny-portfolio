@@ -3,7 +3,7 @@
 **Baseline:** 2026-08-09
 **Build mode:** Manual, phase-gated development
 **Current phase:** Phase 3A — Rules & Status Contract
-**Next development branch:** `feat/rules-status-engine`
+**Development branch:** `feat/rules-status-engine`
 **Accepted baseline:** Phase 2 promoted to `main` at `0c32e01`
 
 Tiny Portfolio is built in small, reviewable phases. A phase advances only after its acceptance criteria are checked and the current work is reviewed.
@@ -101,7 +101,7 @@ The contract must also define:
 - explanation/provenance returned with evaluations;
 - explicit prohibition on BUY or SELL classifications in version 0.1.
 
-**Exit:** the Phase 3 rule/status contract is accepted before rule-engine code is written.
+**Status:** Active. Proposed contract is `docs/rules-status-contract.md` and must be accepted before Phase 3B code begins.
 
 ### Phase 3B — Rules & Status Engine
 
