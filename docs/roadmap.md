@@ -2,7 +2,7 @@
 
 **Baseline:** 2026-08-09
 **Build mode:** Manual, phase-gated development
-**Current phase:** Phase 3A — Rules & Status Contract
+**Current phase:** Phase 3B — Rules & Status Engine
 **Development branch:** `feat/rules-status-engine`
 **Accepted baseline:** Phase 2 promoted to `main` at `0c32e01`
 
@@ -80,32 +80,42 @@ Implement the deterministic user-rule and current-status system.
 
 ### Phase 3A — Rules & Status Contract
 
-Define and accept rule evaluation semantics before implementation.
+Accepted semantics define:
 
-The five version 0.1 machine-rule types are:
+- exactly three process statuses: HOLD, WAIT, and REVIEW;
+- fixed precedence `REVIEW > WAIT > HOLD`;
+- explicit timezone-aware `evaluation_at` supplied by the caller;
+- correction-aware effective ledger behavior;
+- deterministic evaluation for all five version 0.1 machine-rule types;
+- current-value snapshot selection and stale-value handling;
+- milestone crossing and acknowledgement semantics;
+- disabled-rule behavior;
+- deterministic result ordering, evidence, and provenance;
+- exact Decimal arithmetic;
+- explicit prohibition on BUY and SELL classifications.
+
+**Status:** Complete. Accepted contract is `docs/rules-status-contract.md`.
+
+### Phase 3B — Rules & Status Engine
+
+**Status:** Active.
+
+Implement the deterministic rule evaluator against the accepted Phase 3A contract.
+
+Required behavior includes:
 
 - `max_contribution_per_period`;
 - `minimum_days_between_contributions`;
 - `portfolio_value_review_threshold`;
 - `milestone_review`;
-- `scheduled_review_date`.
-
-The contract must also define:
-
-- HOLD, WAIT, and REVIEW meanings;
-- deterministic status precedence when multiple rules apply;
-- missing-data behavior;
-- rule evaluation time semantics;
-- milestone transition behavior;
-- disabled-rule behavior;
-- explanation/provenance returned with evaluations;
-- explicit prohibition on BUY or SELL classifications in version 0.1.
-
-**Status:** Active. Proposed contract is `docs/rules-status-contract.md` and must be accepted before Phase 3B code begins.
-
-### Phase 3B — Rules & Status Engine
-
-Implement the deterministic rule evaluator against the accepted Phase 3A contract.
+- `scheduled_review_date`;
+- HOLD / WAIT / REVIEW global classification;
+- `REVIEW > WAIT > HOLD` precedence;
+- deterministic `evaluation_at` handling;
+- missing, stale, and ambiguous data handling;
+- correction-aware history;
+- deterministic evidence and result ordering;
+- no BUY or SELL output.
 
 ### Phase 3C — Rules & Status Tests & Acceptance
 
