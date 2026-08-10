@@ -2,9 +2,9 @@
 
 **Baseline:** 2026-08-09
 **Build mode:** Manual, phase-gated development
-**Current phase:** Phase 2B — Accounting Engine
-**Development branch:** `feat/deterministic-accounting`
-**Accepted baseline:** Phase 1 promoted to `main` at `a522dd5`
+**Current phase:** Phase 3A — Rules & Status Contract
+**Next development branch:** `feat/rules-status-engine`
+**Accepted baseline:** Phase 2 promoted to `main` at `0c32e01`
 
 Tiny Portfolio is built in small, reviewable phases. A phase advances only after its acceptance criteria are checked and the current work is reviewed.
 
@@ -46,60 +46,72 @@ Implement contribution-adjusted dollar accounting with `Decimal`-safe arithmetic
 
 ### Phase 2A — Accounting Contract
 
-Define and accept the deterministic accounting behavior before implementation:
+Accepted accounting behavior includes:
 
-- effective-ledger and correction behavior;
-- confirmed-snapshot selection;
-- accounting as-of boundary;
-- contributions and withdrawals;
+- correction-aware effective-ledger behavior;
+- confirmed-snapshot selection by portfolio-state time;
+- accounting as-of boundaries;
+- outside contributions and withdrawals;
 - trade neutrality;
 - fee/reward explanatory totals without double counting;
 - contribution-adjusted dollar P/L;
 - post-snapshot activity signaling;
 - missing/ambiguous value handling;
-- Decimal requirements and deterministic derived serialization;
-- required synthetic accounting scenarios.
+- exact Decimal arithmetic and deterministic serialization;
+- portable-record revision provenance.
 
-**Exit:** accepted. `docs/accounting-contract.md` is the implementation contract for Phase 2B.
+**Status:** Complete.
 
 ### Phase 2B — Accounting Engine
 
-**Status:** Active
+`portfolio_engine.py` implements the accepted accounting contract, including current confirmed value, contributed capital, withdrawals, trade neutrality, fee/reward explanation, contribution-adjusted P/L, correction-aware history, post-snapshot freshness, missing-data handling, and deterministic output.
 
-Implement `portfolio_engine.py` against the accepted Phase 2A contract.
-
-Required behavior includes:
-
-- current confirmed value;
-- contributed capital;
-- withdrawals;
-- trade/conversion neutrality for outside capital;
-- known fees/rewards as explanatory activity;
-- contribution-adjusted dollar P/L;
-- correction-aware effective ledger;
-- post-snapshot freshness signaling;
-- missing-data handling;
-- deterministic output.
+**Status:** Complete.
 
 ### Phase 2C — Accounting Tests & Acceptance
 
-Required tests include contribution-not-profit, withdrawal-not-loss, trade neutrality, no fee/reward double counting, correction behavior, Decimal safety, as-of snapshot behavior, ambiguous snapshot handling, and missing-data behavior.
+Accounting tests cover contribution-not-profit, withdrawal-not-loss, trade neutrality, fee/reward non-double-counting, corrections, Decimal exactness, timestamp offsets, snapshot ordering, backfilled events, stale-snapshot behavior, source-record non-mutation, deterministic repeatability, and unavailable-result cases.
 
-**Exit:** the accounting engine passes its Phase 2 acceptance review and is promoted to `main`.
+**Exit:** accepted and promoted to `main` at `0c32e01`; 35 total repository tests pass on the promoted baseline.
 
 ## Phase 3 — Rules + HOLD / WAIT / REVIEW
 
-Implement the small deterministic rule/status system.
+Implement the deterministic user-rule and current-status system.
 
-Initial machine-rule types:
+### Phase 3A — Rules & Status Contract
 
-- maximum contribution per period;
-- minimum days between contributions;
-- portfolio-value review threshold;
-- milestone review;
-- scheduled review date.
+Define and accept rule evaluation semantics before implementation.
 
-Version 0.1 must never output BUY or SELL as a portfolio status.
+The five version 0.1 machine-rule types are:
+
+- `max_contribution_per_period`;
+- `minimum_days_between_contributions`;
+- `portfolio_value_review_threshold`;
+- `milestone_review`;
+- `scheduled_review_date`.
+
+The contract must also define:
+
+- HOLD, WAIT, and REVIEW meanings;
+- deterministic status precedence when multiple rules apply;
+- missing-data behavior;
+- rule evaluation time semantics;
+- milestone transition behavior;
+- disabled-rule behavior;
+- explanation/provenance returned with evaluations;
+- explicit prohibition on BUY or SELL classifications in version 0.1.
+
+**Exit:** the Phase 3 rule/status contract is accepted before rule-engine code is written.
+
+### Phase 3B — Rules & Status Engine
+
+Implement the deterministic rule evaluator against the accepted Phase 3A contract.
+
+### Phase 3C — Rules & Status Tests & Acceptance
+
+Prove each machine-rule type, HOLD/WAIT/REVIEW classification, precedence, missing-data behavior, time boundaries, milestone transitions, disabled rules, deterministic output, and the absence of BUY/SELL classifications.
+
+**Exit:** the rules/status engine passes Phase 3 acceptance and is promoted to `main`.
 
 ## Phase 4 — Tiny Portfolio Skill
 
